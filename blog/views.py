@@ -30,7 +30,7 @@ def post_update(request, pk):
     post = get_object_or_404(Post, id=pk)
     form = PostForm(instance=post)
     if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
             return redirect('post_list')
