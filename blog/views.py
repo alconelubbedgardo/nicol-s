@@ -28,10 +28,12 @@ def post_create(request):
 
 def post_update(request, pk):
     post = get_object_or_404(Post, id=pk)
-    form = PostForm(request.POST, instance=post)
-    if form.is_valid():
-        form.save()
-        return redirect('post_list')
+    form = PostForm(instance=post)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_list')
     return render(request, 'blog/blog_update.html', {'form': form, 'post': post})
 
 def post_delete(request, pk):
