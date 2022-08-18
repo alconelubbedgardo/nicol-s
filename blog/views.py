@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import PostForm
 
-from .models import Post
+from .models import Post, Comments
+from .forms import CommentForm
+
 
 # Create your views here.
 
@@ -61,3 +63,40 @@ def post_detail(request, pk):
     # buscamos el post y lo mostramos
     post = get_object_or_404(Post, id=pk)
     return render(request, 'blog/blog_detail.html', {'post': post})
+
+def comment_create(request, pk):
+    # buscamos el post y lo mostramos
+    context = {}
+    post = get_object_or_404(Post, id=pk)
+    form = CommentForm()
+    context['post'] = post
+    context['form'] = form
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        context['form'] = form
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.user = request.user
+            comment.save()
+            return redirect('post_detail', pk=post.pk)
+    return render(request, 'blog/comment_create.html', context)
+
+def comment_delete(request, pk):
+    comment = get_object_or_404(Comments, id=pk)
+    comment.delete()
+    return redirect('post_detail', pk=comment.post.pk)
+
+def comment_update(request, pk):
+    # buscamos el post y lo mostramos
+    context = {}
+    comment = get_object_or_404(Comments, id=pk)
+    form = CommentForm(request.POST or None, instance=comment)
+    context['comment'] = comment
+    context['post'] = comment.post
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', pk=comment.post.pk)
+    context['form'] = form
+    return render(request, 'blog/comment_edit.html', context)
