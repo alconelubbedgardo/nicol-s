@@ -18,5 +18,16 @@
         
     </div>
     <a href="{% url 'post_list' %}" class="btn btn-primary">Volver</a>
+    <hr>
+    {% for comment in post.comments.all %}
+    <div class="row">
+        <div class="col-md-6">
+            <p>{{ comment.content }}</p>
+            <p>{{ comment.user.username }}</p>
+            <p>Fecha: {{ comment.created_at }}</p>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
 </div>
 {% endblock %}
