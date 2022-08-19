@@ -1,2 +1,2 @@
 # djblog
-Ejemplo de aplicición hecha con Django: Blog
+Ejemplo de aplicación hecha con Django: Blog
