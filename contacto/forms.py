@@ -6,4 +6,4 @@ from .models import Contacto
 class ContactoForm(forms.ModelForm):
     class Meta:
         model = Contacto
-        field = '__all__'
+        fields = ["nombre", "correo", "tipo_consulta", "mensaje", "avisos"]

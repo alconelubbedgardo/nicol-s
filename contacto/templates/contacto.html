@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+{%load crispy_forms_tags %}
+ {%block content%}
+<body class="text-center">
+   
+   
+      <h2>Donde Encontrarnos</h2>
+    
+         
+      
+  <div class="container-md">
+   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17472.796223049285!2d-60.72060549858946!3d-27.57583563689789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9447a9cef3fba79b%3A0x9be3d844b2dacad0!2sCamara%20De%20Comercio!5e0!3m2!1ses!2sar!4v1661048019790!5m2!1ses!2sar" width="400vh" height="350vh" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+         <br><br>
+  </div>
+   
+<div class="row">
+  
+   <div class="col-13 col-md-6 offset-md-3">
+
+      <div class="card">
+         <div class="card-body">
+            <h2> CONTACTANOS </h2>
+      <form action="" class="formulario_contacto" method ="post">
+         {% csrf_token %}
+         {{form | crispy }}
+      
+      
+        
+            
+      
+       </form>
+       {{mensaje}}
+         </div>
+      </div>
+      <br><br>
+      <div>
+         <input type="reset" value="Cancelar" class="btn btn-secondary">   
+         &nbsp;
+       <button type="submit" id="btnEnviar" class="btn btn-primary"> Enviar </button>
+      </div>
+   </div>
+
+</div>
+
+ 
+ <table id="tablacontactos"></table>
+</body>
+ {%endblock%}
