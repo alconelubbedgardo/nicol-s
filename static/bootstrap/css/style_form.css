@@ -13,18 +13,22 @@
 }
 
 body {
-    background: #FC5C7D;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #6A82FB, #FC5C7D);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ 
     font-family: 'Poppins', sans-serif;
     width: 100%;
-    height:650px;
-    display: flex;
+    height:950px;
     justify-content: center;
     align-items: center;
+     background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);
+   
+}
+.contenedor{
+    margin-top: 5%;
+    margin-left: 35%;
+    width: 500px;
+    justify-content: center;
+    align-items: center;
+   
 }
 
 h1{
@@ -35,20 +39,24 @@ h1{
 
 form{
     background: #fff;
-    width: 30%;
+    width: 100%;
     padding: 10px 0;
     border-radius: 10px;
     box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+    
+   
 }
 
 .form{
     width: 100%;
     margin: auto;
+    
 }
 
 form .grupo{
     position: relative;
     margin: 45px;
+    
 }
 
 input, textarea{
@@ -107,12 +115,7 @@ input:focus~.barra::before, textarea:focus~.barra::before{
     left: 0%;
 }
 button{
-    background: #FC5C7D;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #6A82FB, #FC5C7D);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #2ec21d;
     display: block;
     width: 100px;
     height: 40px;
