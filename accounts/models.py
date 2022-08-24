@@ -47,8 +47,8 @@ opciones_provincia = [
     
 class User(AbstractUser):
     """Extiende el Usuario de django"""
-    nombre_completo = models.CharField(max_length=20)
-    apellido = models.CharField(max_length=20)
+    
+    
     dni = models.CharField(verbose_name="N° DNI", max_length=8,
     validators=[int_list_validator(sep=''),MinLengthValidator(8),])
     telefono = models.CharField(verbose_name="N° Telefono", max_length=10,
