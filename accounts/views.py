@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 
 
+
 # Create your views here.
 
 def login_view(request):

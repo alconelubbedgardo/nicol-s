@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import PostForm
-
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Post, Comments
 from .forms import CommentForm
+from .decorators import has_admin_role
+from accounts.models import User
 
 
 # Create your views here.
@@ -13,8 +15,11 @@ def post_list(request):
     print(posts.query)
     return render(request, 'blog/blog_list.html', {'posts': posts})
 
-
+# @user_passes_test(has_admin_role)
+@login_required
 def post_create(request):
+    if request.user.role != User.ADMIN:
+        redirect('index')
     # si es una petición get, es decir, si se visita la 
     # página de creación de post por primera vez
     form = PostForm() # instanciamos el formulario sin datos previos
@@ -34,7 +39,7 @@ def post_create(request):
         messages.error(request, 'Hay errores en el formulario')
     return render(request, 'blog/blog_create.html', {'form': form})
 
-
+@login_required
 def post_update(request, pk):
     # recibimos ese argumento 'pk' enviado como parte de la url:
     # path('update/<int:pk>/', views.post_update, name='post_update'), es pk es el que recibimos como argumento
@@ -52,6 +57,7 @@ def post_update(request, pk):
             return redirect('post_list') # redirigimos
     return render(request, 'blog/blog_update.html', {'form': form, 'post': post})
 
+@login_required
 def post_delete(request, pk):
     # buscamos el post y lo borramos, lanzamos un error 404 (Not found caso contrario)
     post = get_object_or_404(Post, id=pk)
@@ -64,6 +70,7 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, id=pk)
     return render(request, 'blog/blog_detail.html', {'post': post})
 
+@login_required
 def comment_create(request, pk):
     # buscamos el post y lo mostramos
     context = {}
@@ -82,11 +89,13 @@ def comment_create(request, pk):
             return redirect('post_detail', pk=post.pk)
     return render(request, 'blog/comment_create.html', context)
 
+@login_required
 def comment_delete(request, pk):
     comment = get_object_or_404(Comments, id=pk)
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
 
+@login_required
 def comment_update(request, pk):
     # buscamos el post y lo mostramos
     # context = {}
