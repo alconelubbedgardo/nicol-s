@@ -15,11 +15,10 @@ def post_list(request):
     print(posts.query)
     return render(request, 'blog/blog_list.html', {'posts': posts})
 
-# @user_passes_test(has_admin_role)
+@user_passes_test(has_admin_role)
 @login_required
 def post_create(request):
-    if request.user.role != User.ADMIN:
-        redirect('index')
+    
     # si es una petición get, es decir, si se visita la 
     # página de creación de post por primera vez
     form = PostForm() # instanciamos el formulario sin datos previos
@@ -39,6 +38,7 @@ def post_create(request):
         messages.error(request, 'Hay errores en el formulario')
     return render(request, 'blog/blog_create.html', {'form': form})
 
+@user_passes_test(has_admin_role)
 @login_required
 def post_update(request, pk):
     # recibimos ese argumento 'pk' enviado como parte de la url:
@@ -57,6 +57,7 @@ def post_update(request, pk):
             return redirect('post_list') # redirigimos
     return render(request, 'blog/blog_update.html', {'form': form, 'post': post})
 
+@user_passes_test(has_admin_role)
 @login_required
 def post_delete(request, pk):
     # buscamos el post y lo borramos, lanzamos un error 404 (Not found caso contrario)
@@ -91,7 +92,10 @@ def comment_create(request, pk):
 
 @login_required
 def comment_delete(request, pk):
-    comment = get_object_or_404(Comments, id=pk)
+    if request.user.role == User.ADMIN:
+        comment = get_object_or_404(Comments, id=pk)
+    else:    
+        comment = get_object_or_404(Comments, id=pk, user=request.user)
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
 
@@ -99,7 +103,7 @@ def comment_delete(request, pk):
 def comment_update(request, pk):
     # buscamos el post y lo mostramos
     # context = {}
-    comment = get_object_or_404(Comments, id=pk)
+    comment = get_object_or_404(Comments, id=pk, user=request.user)
     form = CommentForm(request.POST or None, instance=comment)
     context = {
         'comment': comment,
