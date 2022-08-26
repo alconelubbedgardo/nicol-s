@@ -15,28 +15,32 @@
 </head>
 <body>
     {% block menu %}
-    <nav class="navbar navbar-expand-lg bg-light">
+    
+    <nav class="navbar navbar-expand-lg" style="background-color: #0d66e2d4;">
+   
+      </div>
+      
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Mi organización</a>
+        
+            <a class="navbar-brand" href="/">CCVA</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'post_list' %}">Blog</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/sobre_nosotros/sobre_nosotros/">Acerca de nosotros</a>
+                <a class="nav-link"  href="/sobre_nosotros/sobre_nosotros/">Acerca de nosotros</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Categorías
+                  Más
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/contact/contact">CONSULTAS</a></li>
+                  <li><a class="dropdown-item" href="/contact/contact">Consultas</a></li>
                   <li><a class="dropdown-item" href="#">Categoría 2</a></li>
-                  <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="#">Categoría 3</a></li>
                 </ul>
               </li>
@@ -53,8 +57,10 @@
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Ingresar búsqueda" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Buscar</button>
+              <button class="btn btn-light" type="submit">Buscar</button>
             </form>
+          </div>
+          
           </div>
         </div>
       </nav>

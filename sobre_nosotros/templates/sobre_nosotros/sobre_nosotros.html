@@ -1,20 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block extracss %}
-<link rel="stylesheet" href="{% static 'bootstrap/assets/web/assets/mobirise-icons2/mobirise2.css' %}">
-<link rel="stylesheet" href="{% static 'bootstrap/assets/bootstrap/css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'bootstrap/assets/bootstrap/css/bootstrap-grid.min.css' %}">
-<link rel="stylesheet" href="{% static 'bootstrap/assets/bootstrap/css/bootstrap-reboot.min.css' %}">
-<link rel="stylesheet" href="{% static 'bootstrap/assets/dropdown/css/style.css' %}">
-<link rel="stylesheet" href="{% static 'bootstrap/assets/socicon/css/styles.css' %}">
-<link rel="stylesheet" href="{% static 'bootstrap/assets/theme/css/style.css' %}">
-<link rel="stylesheet" href="{% static 'bootstrap/assets/mobirise/css/mbr-additional.css' %}">
-{% endblock %}
 
-<head>
-  
-  
+{% block extrahead %}
+
+{% endblock %}
+<!-- <head>
   
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -30,10 +21,9 @@
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
   
   
-  
-  
-</head>
+</head> -->
 <body>
+
   
   <!-- <section data-bs-version="5.1" class="menu menu3 cid-tfzbrPO9it" once="menu" id="menu3-0">
     
@@ -78,6 +68,17 @@
     </nav>
 </section> -->
 {%block content%}
+{% block css %}
+<link rel="stylesheet" href="{% static 'bootstrap/assets/web/assets/mobirise-icons2/mobirise2.css' %}">
+<link rel="stylesheet" href="{% static 'bootstrap/assets/bootstrap/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'bootstrap/assets/bootstrap/css/bootstrap-grid.min.css' %}">
+<link rel="stylesheet" href="{% static 'bootstrap/assets/bootstrap/css/bootstrap-reboot.min.css' %}">
+<link rel="stylesheet" href="{% static 'bootstrap/assets/dropdown/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'bootstrap/assets/socicon/css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'bootstrap/assets/theme/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'bootstrap/assets/mobirise/css/mbr-additional.css' %}">
+{% endblock %}
+
 <section data-bs-version="5.1" class="content7 cid-tfzbv424kg" id="content7-1">
     
     <div class="container">
