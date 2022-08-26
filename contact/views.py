@@ -23,5 +23,5 @@ def index(request):
         send_mail(data['asunto'], mensaje,'noreplay@gmail.com', ['zyckner1994@gmail.com'])
     
     
-    return render(request, 'contact/index.html')
+    return render(request, 'contact/contact.html')
     
