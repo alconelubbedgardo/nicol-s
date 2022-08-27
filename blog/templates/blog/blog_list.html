@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="my-3 text-center">Lista de posts</h1>
+    <h1 class="my-3 text-center">BLOG</h1>
 
     {% for post in posts %}
     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -12,20 +12,23 @@
             <img src="{{ post.imagen.url }}" class="card-img-top" alt="Imagen del post">
             <div class="card-body">
               <h5 class="card-title">{{ post.title }}</h5>
-              <p class="card-text">{{ post.content }}</p>
+              <p class="card-text">{{ post.content| truncatewords:55}}</p>
             </div>
+           
           </div>
         </div>
       </div>
-      {% if request.user.is_authenticated%}
+      <br>
+        {% if request.user.is_authenticated%}
         {% if request.user == post.user or request.user.role == 'ADMIN' %}
-        
-
           <a class="btn btn-primary" href="{% url 'post_update' post.id %}">Editar Post</a>
           <a class="btn btn-danger" href="{% url 'post_delete' post.id %}">Borrar Post</a>
         {% endif %}
-      {% endif %}
+        {% endif %}
+        
       <a class="btn btn-success" href="{% url 'post_detail' post.id %}">Ver Post</a>
+      <br> <br><br>
       {% endfor %}
     </div>
+   
 {% endblock %}

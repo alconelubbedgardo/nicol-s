@@ -23,17 +23,19 @@
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
             
-            <strong class="d-inline-block mb-2 text-primary">{{post.title }}</strong>
-            <h3 class="mb-0">Featured post</h3>
-            <div class="mb-1 text-muted">Nov 12</div>
-            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <a href="{% url 'post_list' %}" class="stretched-link">Continue reading</a>
+            <strong class="d-inline-block mb-2 text-primary">Ultimas Novedades</strong>
+            <h3 class="mb-0">{{Post.title}}</h3>
+            <div class="mb-1 text-muted">{{Post.created_at}}</div>
+            
+            <p class="card-text mb-auto">{{Post.content| truncatewords:40}}</p>
+            <a href="{% url 'post_detail' Post.id %}" class="stretched-link">Seguir Leyendo...</a>
           </div>
           {% comment %} <div class="col-auto d-none d-lg-block">
             {{< placeholder width="200" height="250" background="#55595c" color="#eceeef" text="Thumbnail" >}}
           </div> {% endcomment %}
         </div>
       </div>
+      
       <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
