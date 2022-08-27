@@ -89,16 +89,17 @@ def comment_delete(request, pk):
 
 def comment_update(request, pk):
     # buscamos el post y lo mostramos
-    # context = {}
+    context = {}
     comment = get_object_or_404(Comments, id=pk)
     form = CommentForm(request.POST or None, instance=comment)
-    context = {
-        'comment': comment,
-        'post': comment.post,
-        'form': form,
-    }
+    context['comment'] = comment
+    context['post'] = comment.post
+    context['form'] = form 
     if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)  
         if form.is_valid():
             form.save()
             return redirect('post_detail', pk=comment.post.pk)
+    context['form'] = form
     return render(request, 'blog/comment_edit.html', context)
+
