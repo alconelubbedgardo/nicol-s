@@ -1,4 +1,4 @@
 from .base import *
 
 
-ALLOWED_HOSTS = ['*.herokuapp.com', 'djbloginfo.herokuapp.com']
+ALLOWED_HOSTS = ['*.herokuapp.com', 'infostage.herokuapp.com']
